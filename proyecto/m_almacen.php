@@ -46,6 +46,43 @@ class m_almacen
       die($e->getMessage());
     }
   }
+
+  public function MostrarCantidades($ID_PREPARACIONES)
+  {
+    try {
+
+
+      $stm = $this->bd->prepare(
+        "SELECT * FROM T_CANTIDAD WHERE ID_PREPARACIONES=:ID_PREPARACIONES"
+      );
+      $stm->bindParam(':ID_PREPARACIONES', $ID_PREPARACIONES);
+      $stm->execute();
+      $datos = $stm->fetchAll();
+
+      return $datos;
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function MostrarML($ID_CANTIDAD)
+  {
+    try {
+
+
+      $stm = $this->bd->prepare(
+        "SELECT * FROM T_ML WHERE ID_CANTIDAD=:ID_CANTIDAD"
+      );
+      $stm->bindParam(':ID_CANTIDAD', $ID_CANTIDAD);
+      $stm->execute();
+      $datos = $stm->fetchAll();
+
+      return $datos;
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
   public function MostrarPreparacionSoluciones()
   {
     try {

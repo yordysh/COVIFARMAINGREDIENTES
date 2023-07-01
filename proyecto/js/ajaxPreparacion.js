@@ -16,9 +16,12 @@ $(function () {
   }
 
   function cargarSelect() {
-    var producto = $("#selectProductos");
-
-    const accion = "seleccionarProducto";
+    const preparacion = $("#selectPreparaciones");
+    const cantidad = $("#selectCantidad");
+    const mililitros = $("#selectML");
+    const accion = "seleccionarPreparacion";
+    const accionPreparacion = "seleccionarCantidad";
+    const accionCantidad = "seleccionarML";
     $("#selectInsumos").change(function () {
       var idSolucion = $(this).val();
       $.ajax({
@@ -30,9 +33,29 @@ $(function () {
         type: "POST",
         url: "./c_almacen.php",
       }).done(function (data) {
-        producto.html(data);
+        preparacion.html(data);
         // console.log(data);
       });
+    });
+
+    $("#selectPreparaciones").change(function () {
+      var idPreparacion = $(this).val();
+      $.ajax({
+        data: {
+          idPreparacion: idPreparacion,
+          accion: accionPreparacion,
+        },
+        dataType: "html",
+        type: "POST",
+        url: "./c_almacen.php",
+      }).done(function (data) {
+        cantidad.html(data);
+        // console.log(data);
+      });
+    });
+
+    $("#selectCantidad").change(function () {
+      console.log("ho");
     });
   }
 });

@@ -49,13 +49,10 @@ $dataInsumos = $mostrar->MostrarSoluciones();
 
                         <!-- Text input Preparacion-->
                         <div class="form-outline mb-4">
-                            <label class="form-label">Productos</label>
+                            <label class="form-label">Preparación</label>
                             <!-- <input type="text" id="NOMBRE_PREPARACION" class="form-control" name="NOMBRE_PREPARACION" required> -->
-                            <select id="selectProductos" class="form-select" aria-label="Default select example">
-                                <option value="0" selected disabled>Seleccione Productos</option>
-
-
-
+                            <select id="selectPreparaciones" class="form-select" aria-label="Default select example">
+                                <option value="0" selected disabled>Seleccione Preparación</option>
                             </select>
                         </div>
                         <!-- Text input cantidad-->
@@ -63,10 +60,7 @@ $dataInsumos = $mostrar->MostrarSoluciones();
                             <label class="form-label">Cantidad ("%" o "ppm")</label>
                             <!-- <input type="text" id="CANTIDAD_PORCENTAJE" class="form-control" name="CANTIDAD_PORCENTAJE" required> -->
                             <select id="selectCantidad" class="form-select" aria-label="Default select example">
-                                <option value="none" selected disabled>Seleccione Cantidad</option>
-                                <?php foreach ($dataCantidad as $lista) { ?>
-                                    <option value="<?php echo $lista['ID_CANTIDAD']; ?>" class="option"><?php echo $lista['CANTIDAD_PORCENTAJE']; ?></option>
-                                <?php } ?>
+                                <option value="0" selected disabled>Seleccione Cantidad</option>
                             </select>
                         </div>
                         <!-- Text input numeroPreparacion-->
@@ -75,9 +69,6 @@ $dataInsumos = $mostrar->MostrarSoluciones();
                             <!-- <input type="text" id="CANTIDAD_MILILITROS" class="form-control" name="CANTIDAD_MILILITROS" required> -->
                             <select id="selectML" class="form-select" aria-label="Default select example">
                                 <option value="none" selected disabled>Seleccione Cantidad ML</option>
-                                <?php foreach ($dataMililitros as $lista) { ?>
-                                    <option value="<?php echo $lista['ID_M']; ?>" class="option"><?php echo $lista['CANTIDAD_MILILITROS']; ?></option>
-                                <?php } ?>
                             </select>
                         </div>
                         <!-- Text input numeroPreparacion-->
@@ -86,9 +77,6 @@ $dataInsumos = $mostrar->MostrarSoluciones();
                             <!-- <input type="text" id="CANTIDAD_LITROS" class="form-control" name="CANTIDAD_LITROS" required> -->
                             <select id="selectL" class="form-select" aria-label="Default select example">
                                 <option value="none" selected disabled>Seleccione Cantidad L</option>
-                                <?php foreach ($dataLitros as $lista) { ?>
-                                    <option value="<?php echo $lista['ID_L']; ?>" class="option"><?php echo $lista['CANTIDAD_LITROS']; ?></option>
-                                <?php } ?>
                             </select>
                         </div>
                         <div class="container">
