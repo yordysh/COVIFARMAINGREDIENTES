@@ -3,10 +3,7 @@ require_once "m_almacen.php";
 
 $mostrar = new m_almacen();
 $dataInsumos = $mostrar->MostrarSoluciones();
-$dataProductos = $mostrar->MostrarProductos();
-$dataCantidad = $mostrar->MostrarCantidad();
-$dataMililitros = $mostrar->MostrarMililitros();
-$dataLitros = $mostrar->MostrarLitros();
+
 ?>
 
 <!DOCTYPE html>
@@ -43,21 +40,22 @@ $dataLitros = $mostrar->MostrarLitros();
                             <label class="form-label">Insumos</label>
                             <!-- <input type="text" id="NOMBRE_INSUMOS" class="form-control" name="NOMBRE_INSUMOS" required> -->
                             <select id="selectInsumos" class="form-select" aria-label="Default select example">
-                                <option value="none" selected disabled>Seleccione Insumos</option>
+                                <option value="0" selected disabled>Seleccione Insumos</option>
                                 <?php foreach ($dataInsumos as $lista) { ?>
-                                    <option value="<?php echo $lista->ID_SOLUCIONES; ?>" class="option"><?php echo $lista['NOMBRE_INSUMOS']; ?></option>
+                                    <option value="<?php echo $lista['ID_SOLUCIONES']; ?>" class="option"><?php echo $lista['NOMBRE_INSUMOS']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
+
                         <!-- Text input Preparacion-->
                         <div class="form-outline mb-4">
                             <label class="form-label">Productos</label>
                             <!-- <input type="text" id="NOMBRE_PREPARACION" class="form-control" name="NOMBRE_PREPARACION" required> -->
                             <select id="selectProductos" class="form-select" aria-label="Default select example">
-                                <option value="none" selected disabled>Seleccione Productos</option>
-                                <?php foreach ($dataProductos as $lista) { ?>
-                                    <option value="<?php echo $lista['ID_PRODUCTOS']; ?>" class="option"><?php echo $lista['NOMBRE_PREPARACION']; ?></option>
-                                <?php } ?>
+                                <option value="0" selected disabled>Seleccione Productos</option>
+
+
+
                             </select>
                         </div>
                         <!-- Text input cantidad-->
@@ -75,7 +73,7 @@ $dataLitros = $mostrar->MostrarLitros();
                         <div class="form-outline mb-4">
                             <label class="form-label">Número de preparacion en ml</label>
                             <!-- <input type="text" id="CANTIDAD_MILILITROS" class="form-control" name="CANTIDAD_MILILITROS" required> -->
-                            <select id="selectMl" class="form-select" aria-label="Default select example">
+                            <select id="selectML" class="form-select" aria-label="Default select example">
                                 <option value="none" selected disabled>Seleccione Cantidad ML</option>
                                 <?php foreach ($dataMililitros as $lista) { ?>
                                     <option value="<?php echo $lista['ID_M']; ?>" class="option"><?php echo $lista['CANTIDAD_MILILITROS']; ?></option>
@@ -161,6 +159,7 @@ $dataLitros = $mostrar->MostrarLitros();
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/sweetalert2.all.min.js"></script>
     <script src="./js/ajaxPreparacion.js"></script>
+
     <script>
         function generarPDF() {
             var anioSeleccionado = document.getElementById("anio").value;

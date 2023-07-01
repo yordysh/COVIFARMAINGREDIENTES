@@ -11,18 +11,55 @@ class m_almacen
     $this->bd = DataBase::Conectar();
   }
 
+  public function MostrarSoluciones()
+  {
+    try {
 
+
+      $stm = $this->bd->prepare(
+        "SELECT * FROM T_SOLUCIONES"
+      );
+
+      $stm->execute();
+      $datos = $stm->fetchAll();
+
+      return $datos;
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+  public function MostrarPreparaciones($ID_SOLUCIONES)
+  {
+    try {
+
+
+      $stm = $this->bd->prepare(
+        "SELECT * FROM T_PREPARACIONES WHERE ID_SOLUCIONES=:ID_SOLUCIONES"
+      );
+      $stm->bindParam(':ID_SOLUCIONES', $ID_SOLUCIONES);
+      $stm->execute();
+      $datos = $stm->fetchAll();
+
+      return $datos;
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
   public function MostrarPreparacionSoluciones()
   {
     try {
 
 
-      $stm = $this->bd->prepare("SELECT TS.NOMBRE_INSUMOS, TP.NOMBRE_PREPARACION, TC.CANTIDAD_PORCENTAJE,
-                                 TM.CANTIDAD_MILILITROS, TL.CANTIDAD_LITROS FROM T_SOLUCIONES AS TS
-                                 INNER JOIN T_PREPARACIONES AS TP ON TP.ID_SOLUCIONES = TS.ID_SOLUCIONES
-                                 INNER JOIN T_CANTIDAD AS TC ON TC.ID_PREPARACIONES = TP.ID_PREPARACIONES
-                                 INNER JOIN T_ML AS TM ON TM.ID_CANTIDAD=TC.ID_CANTIDAD
-                                 INNER JOIN T_L AS TL ON TL.ID_L = TM.ID_L");
+      $stm = $this->bd->prepare(
+        "SELECT TS.NOMBRE_INSUMOS AS NOMBRE_INSUMOS, TP.NOMBRE_PREPARACION AS NOMBRE_PREPARACION, 
+                                  TC.CANTIDAD_PORCENTAJE AS CANTIDAD_PORCENTAJE,TM.CANTIDAD_MILILITROS AS CANTIDAD_MILILITROS, 
+                                  TL.CANTIDAD_LITROS AS CANTIDAD_LITROS  FROM T_SOLUCIONES AS TS
+                                  INNER JOIN T_PREPARACIONES AS TP ON TP.ID_SOLUCIONES = TS.ID_SOLUCIONES
+                                  INNER JOIN T_CANTIDAD AS TC ON TC.ID_PREPARACIONES = TP.ID_PREPARACIONES
+                                  INNER JOIN T_ML AS TM ON TM.ID_CANTIDAD=TC.ID_CANTIDAD
+                                  INNER JOIN T_L AS TL ON TL.ID_L = TM.ID_L"
+      );
 
       $stm->execute();
       $datos = $stm->fetchAll();
