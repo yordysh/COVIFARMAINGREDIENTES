@@ -5,7 +5,7 @@ require_once "../funciones/f_funcion.php";
 
 
 $mostrar = new m_almacen();
-$dataInsumos = $mostrar->MostrarPreparacion();
+$dataInsumos = $mostrar->MostrarPreparacionSoluciones();
 
 
 ?>
@@ -13,7 +13,7 @@ $dataInsumos = $mostrar->MostrarPreparacion();
 <table id="tbInsumos" class="table table-sm mb-3 table-hover">
     <thead>
         <tr>
-            <th class="thtitulo" scope="col">SELECCIONE</th>
+
             <th class="thtitulo" scope="col">INSUMOS</th>
             <th class="thtitulo" scope="col">PRODUCTOS</th>
             <th class="thtitulo" scope="col">CANTIDAD("%" o "ppm")</th>
@@ -29,7 +29,7 @@ $dataInsumos = $mostrar->MostrarPreparacion();
         ?>
             <?php foreach ($dataInsumos as $listado) { ?>
                 <tr taskId="<?php echo $listado['ID_SOLUCIONES']; ?>">
-                    <td> <input class="form-check-input" type="radio" name="buttonInsumos" id="buttonInsumos"></td>
+
                     <td><?php echo $listado['NOMBRE_INSUMOS']; ?></td>
                     <td class="NOMBRE_INFRAESTRUCTURA"><?php echo $listado['NOMBRE_PREPARACION']; ?></td>
                     <td id="numerodias"><?php echo $listado['CANTIDAD_PORCENTAJE']; ?></td>

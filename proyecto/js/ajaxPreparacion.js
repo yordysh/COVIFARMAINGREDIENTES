@@ -19,9 +19,12 @@ $(function () {
     const preparacion = $("#selectPreparaciones");
     const cantidad = $("#selectCantidad");
     const mililitros = $("#selectML");
+    const litros = $("#selectL");
     const accion = "seleccionarPreparacion";
     const accionPreparacion = "seleccionarCantidad";
     const accionCantidad = "seleccionarML";
+    const accionMililitros = "seleccionarL";
+
     $("#selectInsumos").change(function () {
       var idSolucion = $(this).val();
       $.ajax({
@@ -55,7 +58,34 @@ $(function () {
     });
 
     $("#selectCantidad").change(function () {
-      console.log("ho");
+      var idCantidad = $(this).val();
+      $.ajax({
+        data: {
+          idCantidad: idCantidad,
+          accion: accionCantidad,
+        },
+        dataType: "html",
+        type: "POST",
+        url: "./c_almacen.php",
+      }).done(function (data) {
+        mililitros.html(data);
+      });
+    });
+
+    $("#selectML").change(function () {
+      var idMililitros = $(this).val();
+
+      $.ajax({
+        data: {
+          idMililitros: idMililitros,
+          accion: accionMililitros,
+        },
+        dataType: "html",
+        type: "POST",
+        url: "./c_almacen.php",
+      }).done(function (data) {
+        litros.html(data);
+      });
     });
   }
 });

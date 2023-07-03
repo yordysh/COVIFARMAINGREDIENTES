@@ -83,6 +83,25 @@ class m_almacen
     }
   }
 
+  public function MostrarL($ID_L)
+  {
+    try {
+
+
+      $stm = $this->bd->prepare(
+        "SELECT T_L.CANTIDAD_LITROS AS CANTIDAD_LITROS FROM T_ML
+         INNER JOIN T_L  ON T_ML.ID_L=T_L.ID_L WHERE ID_ML=:ID_L"
+      );
+      $stm->bindParam(':ID_L', $ID_L);
+      $stm->execute();
+      $datos = $stm->fetchAll();
+
+      return $datos;
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
   public function MostrarPreparacionSoluciones()
   {
     try {
